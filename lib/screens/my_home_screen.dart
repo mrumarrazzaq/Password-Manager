@@ -81,7 +81,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
             ),
             Slider(
               min: 8,
-              max: 100,
+              max: 50,
               value: passwordLength.toDouble(),
               onChanged: (value) {
                 setState(() {
