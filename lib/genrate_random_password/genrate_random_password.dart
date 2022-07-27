@@ -54,8 +54,8 @@ String generateRandomPassword(int passLength, bool isUpperCase,
   Fluttertoast.showToast(
     msg: 'Please Check at least one', // message
     toastLength: Toast.LENGTH_SHORT, // length
-    gravity: ToastGravity.BOTTOM, // location
-    backgroundColor: Colors.black,
+    gravity: ToastGravity.CENTER, // location
+    backgroundColor: Colors.grey,
     timeInSecForIosWeb: 1,
   );
   return '';
