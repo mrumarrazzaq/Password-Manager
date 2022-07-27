@@ -79,6 +79,17 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 ),
               ),
             ),
+            Slider(
+              min: 8,
+              max: 100,
+              value: passwordLength.toDouble(),
+              onChanged: (value) {
+                setState(() {
+                  passwordLength = value.round();
+                  print(passwordLength);
+                });
+              },
+            ),
           ],
         ),
       ),
