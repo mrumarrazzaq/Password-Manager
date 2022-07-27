@@ -110,7 +110,10 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 splashRadius: 35.0,
                 icon: Icon(Icons.copy, color: color),
                 onPressed: () {
-                  setState(() {});
+                  setState(() {
+                    final data = ClipboardData(text: passwordController.text);
+                    Clipboard.setData(data);
+                  });
                   if (passwordController.text.isNotEmpty) {
                     Fluttertoast.showToast(
                       msg: 'Password Copied', // message
