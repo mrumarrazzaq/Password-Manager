@@ -39,6 +39,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
               child: TextFormField(
                 maxLines: null,
+                enabled: false,
                 decoration: const InputDecoration(
                     isDense: true,
                     border: OutlineInputBorder(),
@@ -110,11 +111,11 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 splashRadius: 35.0,
                 icon: Icon(Icons.copy, color: color),
                 onPressed: () {
-                  setState(() {
-                    final data = ClipboardData(text: passwordController.text);
-                    Clipboard.setData(data);
-                  });
                   if (passwordController.text.isNotEmpty) {
+                    setState(() {
+                      final data = ClipboardData(text: passwordController.text);
+                      Clipboard.setData(data);
+                    });
                     Fluttertoast.showToast(
                       msg: 'Password Copied', // message
                       toastLength: Toast.LENGTH_SHORT, // length
