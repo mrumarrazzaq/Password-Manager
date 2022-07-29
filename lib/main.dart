@@ -3,7 +3,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:password_manager/authetication/authentication_with_google.dart';
 import 'package:password_manager/security_section/signIn_screen.dart';
+import 'package:provider/provider.dart';
 import 'screens/my_home_screen.dart';
 
 void main() async {
@@ -27,14 +29,18 @@ class _MyAppState extends State<MyApp> {
   checkLoginStatus() async {
     String? value = await storage.read(key: 'uid');
     if (value == null) {
+      setState(() {
+        isLogin = false;
+      });
       print('---------------');
-      print('User is logOUT');
-      isLogin = false;
+      print('User is logOUT $isLogin');
       // return false;
     } else {
+      setState(() {
+        isLogin = true;
+      });
       print('---------------');
-      print('User is logIN');
-      isLogin = true;
+      print('User is logIN $isLogin');
       // return true;
     }
   }
@@ -47,14 +53,17 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Password Manager',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
+    return ChangeNotifierProvider(
+      create: (context) => GoogleSignInProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Password Manager',
+        theme: ThemeData(
+          primarySwatch: Colors.teal,
+        ),
+        home: isLogin ? const MyHomeScreen() : const SignInScreen(),
+        // const MyHomeScreen(),
       ),
-      home: isLogin ? const MyHomeScreen() : const SignInScreen(),
-      // const MyHomeScreen(),
     );
   }
 }

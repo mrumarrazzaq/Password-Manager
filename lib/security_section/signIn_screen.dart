@@ -7,9 +7,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:password_manager/authetication/authentication_with_google.dart';
 import 'package:password_manager/colors.dart';
 import 'package:password_manager/genrate_random_password/genrate_random_password.dart';
 import 'package:password_manager/screens/my_home_screen.dart';
+import 'package:provider/provider.dart';
 import 'forgot_password.dart';
 import 'registration_screen.dart';
 
@@ -347,16 +349,41 @@ class _SignInScreenState extends State<SignInScreen> {
                           child: const Text('Register'))
                     ],
                   ),
-                  ElevatedButton.icon(
-                    onPressed: () {},
+
+                  ElevatedButton(
+                    onPressed: () async {
+                      final provider = Provider.of<GoogleSignInProvider>(
+                          context,
+                          listen: false);
+                      await provider.googleLogIn();
+                      await Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MyHomeScreen(),
+                          ),
+                          (route) => false);
+                      await Fluttertoast.showToast(
+                        msg: 'User Login Successfully', // message
+                        toastLength: Toast.LENGTH_SHORT, // length
+                        gravity: ToastGravity.BOTTOM, // location
+                        backgroundColor: Colors.green,
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       primary: whiteColor,
                       onPrimary: blackColor,
                       minimumSize: const Size(200, 50),
                     ),
-                    icon: const FaIcon(FontAwesomeIcons.google,
-                        color: Colors.black),
-                    label: const Text('SignUp with Google'),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset('assets/google-logo.png', height: 30.0),
+                        const SizedBox(
+                          width: 5.0,
+                        ),
+                        const Text('SignIn with Google'),
+                      ],
+                    ),
                   ),
                 ],
               ),
