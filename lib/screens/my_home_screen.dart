@@ -208,12 +208,12 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 splashRadius: 35.0,
                 icon: Icon(Icons.account_circle, color: color),
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => const ProfileScreen(),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileScreen(),
+                    ),
+                  );
                 },
               ),
             ),
