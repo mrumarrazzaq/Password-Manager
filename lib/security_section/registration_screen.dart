@@ -89,6 +89,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         };
 
         user.collection('User Data').doc(email).set(json);
+        await storage.write(key: 'password', value: passwordController.text);
+        await storage.write(key: 'email', value: emailController.text);
+        print('------------------------------------');
+        print('Email and Password Save Successfully');
+        print('------------------------------------');
 
         Fluttertoast.showToast(
           msg: 'Registered Successfully.. Now Login', // message
@@ -461,15 +466,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                     ),
                   ),
-                  // TextButton(
-                  //     onPressed: () async {
-                  //       fcmToken = await _fcm.getToken();
-                  //       print('----------------------');
-                  //       print('FCM Token : $fcmToken');
-                  //       print('----------------------');
-                  //     },
-                  //     child: Text('abcd')),
-                  //Other options
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
