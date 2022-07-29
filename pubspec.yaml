@@ -16,6 +16,17 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   fluttertoast: ^8.0.9
+  #Form Validator
+  form_field_validator: ^1.1.0
+  #Fire Base
+  firebase_core: ^1.17.1
+  firebase_auth: ^3.3.7
+  cloud_firestore: ^3.1.8
+  #For Shared Preferences
+  flutter_secure_storage: ^5.0.2
+
+  font_awesome_flutter: ^10.1.0
+  google_sign_in: ^5.4.0
 
 dev_dependencies:
   flutter_test:

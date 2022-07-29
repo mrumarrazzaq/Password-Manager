@@ -1,8 +1,13 @@
 // ignore_for_file: avoid_print
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:password_manager/colors.dart';
 import 'package:password_manager/genrate_random_password/genrate_random_password.dart';
+import 'package:password_manager/profile_screen.dart';
+import 'package:password_manager/security_section/signIn_screen.dart';
 
 class MyHomeScreen extends StatefulWidget {
   const MyHomeScreen({Key? key}) : super(key: key);
@@ -13,6 +18,7 @@ class MyHomeScreen extends StatefulWidget {
 
 class _MyHomeScreenState extends State<MyHomeScreen> {
   TextEditingController passwordController = TextEditingController();
+  final storage = FlutterSecureStorage();
   int passwordLength = 8;
   int minPasswordLength = 8;
   int maxPasswordLength = 50;
@@ -30,6 +36,28 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Password Manager'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout, color: whiteColor),
+            onPressed: () async => {
+              await FirebaseAuth.instance.signOut(),
+              await storage.delete(key: 'uid'),
+              print('SignOut called'),
+              await Fluttertoast.showToast(
+                msg: 'User Logout Successfully', // message
+                toastLength: Toast.LENGTH_SHORT, // length
+                gravity: ToastGravity.BOTTOM, // location
+                backgroundColor: Colors.green,
+              ),
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SignInScreen(),
+                  ),
+                  (route) => false),
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -165,6 +193,27 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 icon: Icon(Icons.settings, color: color),
                 onPressed: () {
                   modalBottomSheetMenu();
+                },
+              ),
+            ),
+            Container(
+              height: 60,
+              width: 60,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              child: IconButton(
+                splashColor: Colors.teal,
+                splashRadius: 35.0,
+                icon: Icon(Icons.account_circle, color: color),
+                onPressed: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const ProfileScreen(),
+                  //   ),
+                  // );
                 },
               ),
             ),
