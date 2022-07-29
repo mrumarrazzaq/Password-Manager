@@ -162,10 +162,10 @@ class _SignInScreenState extends State<SignInScreen> {
                         left: 25.0, right: 25.0, bottom: 20.0, top: 20.0),
                     child: TextFormField(
                       onTap: () {
-                        // if (getUserEmail != 'NULL' &&
-                        //     emailController.text.isEmpty) {
-                        //   modalBottomSheetCredentials();
-                        // }
+                        if (getUserEmail != 'NULL' &&
+                            emailController.text.isEmpty) {
+                          modalBottomSheetCredentials();
+                        }
                       },
                       keyboardType: TextInputType.emailAddress,
                       cursorColor: blackColor,
@@ -214,10 +214,10 @@ class _SignInScreenState extends State<SignInScreen> {
                         left: 25.0, right: 25.0, bottom: 20.0),
                     child: TextFormField(
                       onTap: () {
-                        // if (getUserPassword != 'NULL' &&
-                        //     passwordController.text.isEmpty) {
-                        //   modalBottomSheetCredentials();
-                        // }
+                        if (getUserPassword != 'NULL' &&
+                            passwordController.text.isEmpty) {
+                          modalBottomSheetCredentials();
+                        }
                       },
                       obscureText: _obscureText,
                       cursorColor: blackColor,
@@ -367,69 +367,69 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  // modalBottomSheetCredentials() {
-  //   showModalBottomSheet(
-  //       context: context,
-  //       builder: (builder) {
-  //         return StatefulBuilder(
-  //             builder: (BuildContext context, StateSetter setState) {
-  //           return Container(
-  //             height: 150.0,
-  //             color: Colors.transparent,
-  //             child: Container(
-  //               decoration: const BoxDecoration(
-  //                   color: Colors.white,
-  //                   borderRadius: BorderRadius.only(
-  //                       topLeft: Radius.circular(20.0),
-  //                       topRight: Radius.circular(20.0))),
-  //               child: Column(
-  //                 mainAxisAlignment: MainAxisAlignment.start,
-  //                 children: [
-  //                   Padding(
-  //                     padding: const EdgeInsets.only(top: 5.0, bottom: 10.0),
-  //                     child: Container(
-  //                       width: 200,
-  //                       height: 5.0,
-  //                       decoration: const BoxDecoration(
-  //                           color: Colors.grey,
-  //                           borderRadius:
-  //                               BorderRadius.all(Radius.circular(30.0))),
-  //                     ),
-  //                   ),
-  //                   ListTile(
-  //                     title: Text(
-  //                       getUserEmail,
-  //                       style: const TextStyle(
-  //                         fontSize: 18,
-  //                         fontWeight: FontWeight.bold,
-  //                       ),
-  //                     ),
-  //                     subtitle: const Text(
-  //                       '******************',
-  //                       style: TextStyle(
-  //                         fontSize: 20,
-  //                       ),
-  //                     ),
-  //                   ),
-  //                   ElevatedButton.icon(
-  //                     onPressed: () async {
-  //                       emailController.text = getUserEmail;
-  //                       passwordController.text = getUserPassword;
-  //                       Navigator.pop(context);
-  //                     },
-  //                     style: ElevatedButton.styleFrom(
-  //                       primary: whiteColor,
-  //                       onPrimary: blackColor,
-  //                       minimumSize: const Size(200, 50),
-  //                     ),
-  //                     icon: const Icon(Icons.password_outlined),
-  //                     label: const Text('Get Credentials'),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //           );
-  //         });
-  //       });
-  // }
+  modalBottomSheetCredentials() {
+    showModalBottomSheet(
+        context: context,
+        builder: (builder) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+            return Container(
+              height: 150.0,
+              color: Colors.transparent,
+              child: Container(
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.circular(20.0))),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5.0, bottom: 10.0),
+                      child: Container(
+                        width: 200,
+                        height: 5.0,
+                        decoration: const BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0))),
+                      ),
+                    ),
+                    ListTile(
+                      title: Text(
+                        getUserEmail,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: const Text(
+                        '******************',
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () async {
+                        emailController.text = getUserEmail;
+                        passwordController.text = getUserPassword;
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: whiteColor,
+                        onPrimary: blackColor,
+                        minimumSize: const Size(200, 50),
+                      ),
+                      icon: const Icon(Icons.password_outlined),
+                      label: const Text('Get Credentials'),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          });
+        });
+  }
 }

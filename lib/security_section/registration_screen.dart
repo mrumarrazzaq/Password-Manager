@@ -281,14 +281,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     padding: const EdgeInsets.only(
                         left: 20.0, right: 20.0, bottom: 20.0),
                     child: TextFormField(
-                      // onTap: () {
-                      //   setState(() {
-                      //     passwordController.text = generateRandomPassword(
-                      //         16, true, true, true, true);
-                      //     confirmPasswordController.text =
-                      //         passwordController.text;
-                      //   });
-                      // },
+                      onTap: () {
+                        setState(() {
+                          passwordController.text = generateRandomPassword(
+                              16, true, true, true, true);
+                          confirmPasswordController.text =
+                              passwordController.text;
+                        });
+                      },
                       obscureText: _obscurePassword,
                       cursorColor: blackColor,
                       style: TextStyle(color: blackColor),
