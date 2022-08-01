@@ -178,6 +178,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20.0),
@@ -190,6 +191,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                   ),
+                  //Name
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 20.0, right: 20.0, bottom: 20.0),
@@ -233,7 +235,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                     ),
                   ),
-
                   //Email Address
                   Padding(
                     padding: const EdgeInsets.only(
@@ -286,14 +287,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     padding: const EdgeInsets.only(
                         left: 20.0, right: 20.0, bottom: 20.0),
                     child: TextFormField(
-                      onTap: () {
-                        setState(() {
-                          passwordController.text = generateRandomPassword(
-                              16, true, true, true, true);
-                          confirmPasswordController.text =
-                              passwordController.text;
-                        });
-                      },
                       obscureText: _obscurePassword,
                       cursorColor: blackColor,
                       style: TextStyle(color: blackColor),
@@ -317,9 +310,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           borderRadius: BorderRadius.circular(30.0),
                           borderSide: BorderSide(color: tealColor, width: 1.0),
                         ),
-                        prefixIcon: Icon(
-                          Icons.vpn_key,
-                          color: tealColor,
+                        prefixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              passwordController.text = generateRandomPassword(
+                                  16, true, true, true, true);
+                              confirmPasswordController.text =
+                                  passwordController.text;
+                            });
+                          },
+                          splashRadius: 20.0,
+                          splashColor: tealColor,
+                          icon: Icon(
+                            Icons.vpn_key,
+                            color: tealColor,
+                          ),
                         ),
                         prefixText: '  ',
                         suffixIcon: GestureDetector(
@@ -348,7 +353,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   //Confirm Password
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 20.0, right: 20.0, bottom: 20.0),
+                      left: 20.0,
+                      right: 20.0,
+                      bottom: 20.0,
+                    ),
                     child: TextFormField(
                       obscureText: _obscureConfirmPassword,
                       cursorColor: blackColor,
@@ -373,9 +381,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           borderRadius: BorderRadius.circular(30.0),
                           borderSide: BorderSide(color: tealColor, width: 1.0),
                         ),
-                        prefixIcon: Icon(
-                          Icons.vpn_key,
-                          color: tealColor,
+                        prefixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              passwordController.text = generateRandomPassword(
+                                  16, true, true, true, true);
+                              confirmPasswordController.text =
+                                  passwordController.text;
+                            });
+                          },
+                          splashRadius: 20.0,
+                          splashColor: tealColor,
+                          icon: Icon(
+                            Icons.vpn_key,
+                            color: tealColor,
+                          ),
                         ),
                         prefixText: '  ',
                         suffixIcon: GestureDetector(

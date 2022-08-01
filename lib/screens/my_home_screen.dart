@@ -1,13 +1,15 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:password_manager/authetication/authentication_with_google.dart';
 import 'package:password_manager/colors.dart';
 import 'package:password_manager/genrate_random_password/genrate_random_password.dart';
 import 'package:password_manager/profile_screen.dart';
 import 'package:password_manager/security_section/signIn_screen.dart';
+import 'package:provider/provider.dart';
 
 class MyHomeScreen extends StatefulWidget {
   const MyHomeScreen({Key? key}) : super(key: key);
@@ -31,6 +33,33 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
     await Future.delayed(const Duration(milliseconds: 1000));
   }
 
+  String SignInWith = 'NULL';
+
+  isGoogleLogin() async {
+    String? value = await storage.read(key: 'signInWith') ?? 'NULL';
+    setState(() {
+      SignInWith = value;
+    });
+    print('isGoogleLogin value is reading: $SignInWith');
+  }
+
+  signOut() async {
+    await FirebaseAuth.instance.signOut();
+    await storage.delete(key: 'uid');
+  }
+
+  googleSignOut() async {
+    final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+    provider.logOut();
+    await storage.delete(key: 'uid');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    isGoogleLogin();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,22 +68,21 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.logout, color: whiteColor),
-            onPressed: () async => {
-              await FirebaseAuth.instance.signOut(),
-              await storage.delete(key: 'uid'),
-              print('SignOut called'),
+            onPressed: () async {
+              SignInWith == 'GOOGLE' ? googleSignOut() : signOut();
+              print('SignOut called');
               await Fluttertoast.showToast(
                 msg: 'User Logout Successfully', // message
                 toastLength: Toast.LENGTH_SHORT, // length
                 gravity: ToastGravity.BOTTOM, // location
                 backgroundColor: Colors.green,
-              ),
+              );
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const SignInScreen(),
                   ),
-                  (route) => false),
+                  (route) => false);
             },
           ),
         ],
@@ -231,13 +259,13 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
               builder: (BuildContext context, StateSetter setState) {
             return Container(
               height: 250.0,
-              color: Colors.transparent,
+              color: Colors.black54,
               child: Container(
                 decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30.0),
-                        topRight: Radius.circular(30.0))),
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.circular(20.0))),
                 child: Column(
                   children: [
                     const Padding(
