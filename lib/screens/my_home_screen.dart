@@ -11,7 +11,7 @@ import 'package:password_manager/profile_screen.dart';
 import 'package:password_manager/security_section/signIn_screen.dart';
 import 'package:provider/provider.dart';
 
-import 'manage_password.dart';
+import 'search_credentials.dart';
 
 class MyHomeScreen extends StatefulWidget {
   const MyHomeScreen({Key? key}) : super(key: key);
@@ -241,7 +241,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ManagePassword(),
+                      builder: (context) => const SearchCredentials(),
                     ),
                   );
                 },

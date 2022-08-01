@@ -34,14 +34,14 @@ List<String> passwordList = [
   'rooq(£IHSDgm',
 ];
 
-class ManagePassword extends StatefulWidget {
-  const ManagePassword({Key? key}) : super(key: key);
+class SearchCredentials extends StatefulWidget {
+  const SearchCredentials({Key? key}) : super(key: key);
 
   @override
-  State<ManagePassword> createState() => _ManagePasswordState();
+  State<SearchCredentials> createState() => _SearchCredentialsState();
 }
 
-class _ManagePasswordState extends State<ManagePassword> {
+class _SearchCredentialsState extends State<SearchCredentials> {
   final TextEditingController _searchController = TextEditingController();
   String userEmail = '';
   String userPassword = '';
@@ -83,10 +83,10 @@ class _ManagePasswordState extends State<ManagePassword> {
             text: '', // default text style
             children: <TextSpan>[
               TextSpan(
-                  text: 'Manage ',
+                  text: 'Search ',
                   style: TextStyle(fontStyle: FontStyle.italic)),
               TextSpan(
-                  text: 'Passwords',
+                  text: 'Credentials',
                   style: TextStyle(fontWeight: FontWeight.bold)),
             ],
           ),
@@ -128,7 +128,7 @@ class _ManagePasswordState extends State<ManagePassword> {
                     borderRadius: BorderRadius.circular(30.0),
                     borderSide: BorderSide(color: tealColor, width: 1.5),
                   ),
-                  hintText: 'Search',
+                  hintText: 'Search by email',
                   hintStyle: const TextStyle(color: Colors.white),
                   labelStyle: TextStyle(color: whiteColor),
                   prefixIcon: Icon(
