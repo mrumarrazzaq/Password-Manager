@@ -11,6 +11,8 @@ import 'package:password_manager/profile_screen.dart';
 import 'package:password_manager/security_section/signIn_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'manage_password.dart';
+
 class MyHomeScreen extends StatefulWidget {
   const MyHomeScreen({Key? key}) : super(key: key);
 
@@ -221,6 +223,27 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 icon: Icon(Icons.settings, color: color),
                 onPressed: () {
                   modalBottomSheetMenu();
+                },
+              ),
+            ),
+            Container(
+              height: 60,
+              width: 60,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              child: IconButton(
+                splashColor: Colors.teal,
+                splashRadius: 35.0,
+                icon: Icon(Icons.password_outlined, color: color),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ManagePassword(),
+                    ),
+                  );
                 },
               ),
             ),
