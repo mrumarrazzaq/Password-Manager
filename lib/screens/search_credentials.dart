@@ -214,12 +214,19 @@ class CustomCard extends StatefulWidget {
 }
 
 class _CustomCardState extends State<CustomCard> {
+  TextEditingController password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    password.text = widget.password;
     return GestureDetector(
       child: ListTile(
         title: Text(widget.email),
-        subtitle: Text(widget.password),
+        subtitle: TextField(
+          controller: password,
+          enabled: false,
+          obscureText: true,
+        ),
         trailing: IconButton(
           splashColor: Colors.teal,
           splashRadius: 35.0,
